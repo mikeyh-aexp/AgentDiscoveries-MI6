@@ -12,7 +12,6 @@ import LocationReportSearch from './search-forms/search-location-reports';
 import RegionSummarySearch from './search-forms/search-region-summaries';
 import LocationReportSubmit from './submit-forms/submit-location-report';
 import RegionSummarySubmit from './submit-forms/submit-region-summary';
-import Entities from './admin/entities-view';
 import UsersTable from './admin/users-table';
 import RegionsTable from './admin/regions-table';
 import LocationsTable from './admin/locations-table';

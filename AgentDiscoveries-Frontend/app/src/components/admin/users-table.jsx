@@ -22,7 +22,7 @@ export default class UsersTable extends React.Component {
         return (
             <div className='col-md-8 col-md-offset-2'>
                 <h3>Users</h3>
-                <Link to={`/admin/users/add`}>
+                <Link to={'/admin/users/add'}>
                     <Button type='button'>
                         Add User
                     </Button>
@@ -33,8 +33,8 @@ export default class UsersTable extends React.Component {
     }
 
     loadEntities() {
-       apiGet('users')
-           .then(results => this.setState({ entities: results }))
-           .catch(errorLogAndRedirect);
+        apiGet('users')
+            .then(results => this.setState({ entities: results }))
+            .catch(errorLogAndRedirect);
     }
 }

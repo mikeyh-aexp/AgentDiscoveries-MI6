@@ -22,7 +22,7 @@ export default class RegionsTable extends React.Component {
         return (
             <div className='col-md-8 col-md-offset-2'>
                 <h3>Regions</h3>
-                <Link to={`/admin/regions/add`}>
+                <Link to={'/admin/regions/add'}>
                     <Button type='button'>
                         Add Region
                     </Button>
@@ -33,8 +33,8 @@ export default class RegionsTable extends React.Component {
     }
 
     loadEntities() {
-       apiGet('regions')
-           .then(results => this.setState({ entities: results }))
-           .catch(errorLogAndRedirect);
+        apiGet('regions')
+            .then(results => this.setState({ entities: results }))
+            .catch(errorLogAndRedirect);
     }
 }

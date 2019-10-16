@@ -45,33 +45,32 @@ export default class RegionSummariesSearch extends React.Component {
                     <h3>Search Region Summaries</h3>
                     <Message message={this.state.message} />
                     <FormGroup>
-                         <ControlLabel>Region</ControlLabel>
-                         <FormControl componentClass="select"
-                         onChange={this.onRegionChange}>
-                              {regionOptions}
-                         </FormControl>
+                        <ControlLabel>Region</ControlLabel>
+                        <FormControl componentClass="select"
+                            onChange={this.onRegionChange}>
+                            {regionOptions}
+                        </FormControl>
                     </FormGroup>
                     <FormGroup>
-                         <ControlLabel>Agent</ControlLabel>
-                         <FormControl componentClass="select"
-                         onChange={this.onAgentChange}>
-                               {agentOptions}
-                         </FormControl>
+                        <ControlLabel>Agent</ControlLabel>
+                        <FormControl componentClass="select"
+                            onChange={this.onAgentChange}>
+                            {agentOptions}
+                        </FormControl>
                     </FormGroup>
                     <FormGroup className='form-inline'>
-                         <ControlLabel className='rm-3'>From</ControlLabel>
-                         <FormControl className='rm-3' type='date'
-                         value={this.state.fromTime}
-                         onChange={this.onFromChange}/>
-
-                         <ControlLabel className='rm-3'>To</ControlLabel>
-                         <FormControl className='rm-3' type='date'
-                         value={this.state.toTime}
-                         onChange={this.onToChange}/>
+                        <ControlLabel className='rm-3'>From</ControlLabel>
+                        <FormControl className='rm-3' type='date'
+                            value={this.state.fromTime}
+                            onChange={this.onFromChange}/>
+                        <ControlLabel className='rm-3'>To</ControlLabel>
+                        <FormControl className='rm-3' type='date'
+                            value={this.state.toTime}
+                            onChange={this.onToChange}/>
                     </FormGroup>
                     <Button type='submit'>Search</Button>
                 </Form>
-                <SearchResult results={this.state.results} />
+                <SearchResult api='regions' results={this.state.results} />
             </div>
         );
     }

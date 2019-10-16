@@ -132,16 +132,20 @@ textarea {
 }
 
 .result-heading {
+    margin-top: 3vh;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    color: $main-color;
+    span {
+        color: #fff;
+    }
 }
 
-.panel {
-    background-color: transparent;
-    .panel-heading {
-        background-color: $main-overlay;
-        color: #fff;
+table {
+    margin-top: 3vh;
+    td {
+        max-height: 100px;
     }
 }
 

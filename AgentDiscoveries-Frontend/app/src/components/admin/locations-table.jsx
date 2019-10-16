@@ -22,7 +22,7 @@ export default class LocationsTable extends React.Component {
         return (
             <div className='col-md-8 col-md-offset-2'>
                 <h3>Locations</h3>
-                <Link to={`/admin/locations/add`}>
+                <Link to={'/admin/locations/add'}>
                     <Button type='button'>
                         Add Locations
                     </Button>
@@ -33,8 +33,8 @@ export default class LocationsTable extends React.Component {
     }
 
     loadEntities() {
-       apiGet('locations')
-           .then(results => this.setState({ entities: results }))
-           .catch(errorLogAndRedirect);
+        apiGet('locations')
+            .then(results => this.setState({ entities: results }))
+            .catch(errorLogAndRedirect);
     }
 }
