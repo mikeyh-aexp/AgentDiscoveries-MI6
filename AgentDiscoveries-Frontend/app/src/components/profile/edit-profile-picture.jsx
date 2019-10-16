@@ -49,7 +49,6 @@ export default class EditProfilePicture extends React.Component {
 
     onUpdate(event) {
         event.preventDefault();
-
         const file = event.target.files[0];
 
         if (!this.validatePicture(file)) {
@@ -71,6 +70,7 @@ export default class EditProfilePicture extends React.Component {
                 }
             })
             .then(() => {
+                window.dispatchEvent(new Event('picture'));
                 this.props.onSuccess();
             })
             .catch(error => {
