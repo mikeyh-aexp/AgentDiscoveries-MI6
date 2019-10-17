@@ -4,14 +4,18 @@ import com.google.common.base.Charsets;
 import com.google.common.io.Resources;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.configuration2.Configuration;
+import org.softwire.training.models.Message;
+import spark.Request;
+import spark.Response;
 
 import javax.inject.Inject;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.time.ZoneOffset;
-import java.util.List;
+import java.util.*;
 
 /**
  * The MessageProcessor selects a word from a list and applies a shift cipher.
@@ -107,5 +111,35 @@ public class MessageProcessor {
 
         // floorMod is like '%' but always returns a positive integer
         return (char) (Math.floorMod(ch + shift - offset, limit) + offset);
+    }
+
+    public Message bruteForceDecodeString(String input) {
+        LinkedHashMap<Message, Integer> specialCharCounts = new LinkedHashMap<>();
+        for (String word: WORD_LIST) {
+            Message message = new Message(applyShiftCipher(input, word, true));
+            Integer count = countSpecialChars(message.getMessage());
+            specialCharCounts.put(message, count);
+        }
+
+        Message message = new Message("");
+        int specialCharCount = 100;
+        for (Map.Entry<Message, Integer> set: specialCharCounts.entrySet()) {
+            if (specialCharCount > set.getValue()) {
+                specialCharCount = set.getValue();
+                message = set.getKey();
+            }
+        }
+
+        return message;
+    }
+
+    private int countSpecialChars(String string) {
+        String string2 = string;
+        String[] specialChars = new String[]{")", "(", "\\", ".", ",", "`", "~", "_", ":", ";", ">", "<", "@", "#", "&", "-", "]", "[", "*", "{", "}", "|", "/", "^", "$"};
+        for (String ch: specialChars) {
+            string2 = string2.replace(ch, "");
+        }
+        int count = string.length() - string2.length();
+        return count;
     }
 }

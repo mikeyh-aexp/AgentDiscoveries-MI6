@@ -33,8 +33,8 @@ export default class Result extends React.Component {
         return headers.map((header) => {
             if(this.props.entity[header] === undefined) this.props.entity[header] = 'N/A';
 
-            if (this.props.entity[header] === reportBody && reportBody.length > 20) {
-                const shortReportBody = reportBody.slice(0, 20) + "...";
+            if (this.props.entity[header] === reportBody && reportBody.length > 100) {
+                const shortReportBody = reportBody.slice(0, 100) + '...';
                 return <td key={header}>{shortReportBody}</td>;
             } else if(this.isIsoDate(this.props.entity[header])) {
                 return <td key={header}>{this.formatDate(this.props.entity[header])}</td>;

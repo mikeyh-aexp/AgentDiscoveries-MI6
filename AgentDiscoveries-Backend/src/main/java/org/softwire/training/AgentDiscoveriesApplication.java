@@ -83,6 +83,7 @@ public class AgentDiscoveriesApplication implements Runnable {
                 setupBasicEntityCrudRoutes("/users", usersRoutes);
 
                 post("/decodemessage", messageProcessorRoutes::decodeMessage, responseTransformer);
+                post("/decodemessage/enemy", messageProcessorRoutes::bruteForceDecode, responseTransformer);
                 post("/encodemessage", messageProcessorRoutes::encodeMessage, responseTransformer);
 
                 // API endpoint to initiate shutdown

@@ -37,6 +37,7 @@
     "webpack-dev-server": "^3.8.0"
   },
   "dependencies": {
+    "jquery": "^3.4.1",
     "jspdf": "^1.4.1",
     "jspdf-autotable": "^3.2.5",
     "moment": "^2.22.1",

@@ -1,7 +1,8 @@
 import * as React from 'react';
-import {Button, ControlLabel, Form, FormControl, FormGroup} from 'react-bootstrap';
+import {Button, Form, FormControl, FormGroup} from 'react-bootstrap';
 import {apiPost} from './utilities/request-helper';
 import Timezones from './timezones';
+import $ from 'jquery';
 
 export default class TodaysCodePage extends React.Component {
     constructor(props) {
@@ -10,8 +11,8 @@ export default class TodaysCodePage extends React.Component {
         this.state = {
             message: '',
             result: '',
-            showMessage: false,
-            buttonHidden: false
+            showMessage: true,
+            hideButton: false
         };
 
         this.onChange = this.onChange.bind(this);
@@ -21,23 +22,33 @@ export default class TodaysCodePage extends React.Component {
         this.slideDown = this.slideDown.bind(this);
     }
 
+    componentDidMount() {
+        $('#react-root').css('background-color', 'rgba(0, 0, 0, 0.7)');
+        $('.opening-top').animate({ width: '0%' }, 800, function() {});
+        $('.opening-bottom').animate({ width: '0%' }, 800, function() {});
+    }
+
     render() {
+
         return (
             <React.Fragment>
 
+                <div className='opening-top'></div>
+                <div className='opening-bottom'></div>
+
                 <Timezones />
 
+                <div className='box'></div>
                 <div className='col-md-8 col-md-offset-2 text-center'>
                     {this.state.buttonHidden ? null :
-                    <Button className="message-btn" onClick={this.slideDown}>Encode Message</Button>}
-                        {this.state.showMessage ?
+                        <Button className="message-btn" id="encode-button-show" onClick={this.slideDown}>Encode Message</Button>}
+                    {this.state.showMessage ?
                         <Form className="encode-form">
                             <h3>Encode/decode message with today's secret</h3>
                             <FormGroup>
-                                <ControlLabel>Message</ControlLabel>
                                 <FormControl type='text' required
                                     id='message-input'
-                                    componentClass='textarea' rows={6}
+                                    componentClass='textarea' rows={2}
                                     placeholder='Enter message'
                                     value={this.state.message}
                                     onChange={this.onChange}/>
@@ -46,8 +57,8 @@ export default class TodaysCodePage extends React.Component {
                             <Button id="decode-button" type='submit' onClick={this.handleDecode}>Decode</Button>
                         </Form> : null}
                     <div id='code-result'>
-                        {this.state.result ? <h3>Result</h3> : ''}
-                        {this.state.result}
+                        {this.state.result ? <h3>Result: </h3> : ''}
+                        <h4>{this.state.result}</h4>
                     </div>
                 </div>
             </React.Fragment>
@@ -55,8 +66,11 @@ export default class TodaysCodePage extends React.Component {
     }
 
     slideDown(event) {
-        this.setState({showMessage: true});
         this.setState({buttonHidden: true});
+        this.setState({showMessage: true});
+        $('.encode-form').animate({height: '20vh'}, 'slow');
+        $('h3').addClass('typing-animation');
+        setTimeout(function(){ $('h3').removeClass('typing-animation'); }, 3500);
     }
 
     onChange(event) {

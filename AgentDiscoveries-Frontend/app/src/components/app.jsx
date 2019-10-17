@@ -15,6 +15,7 @@ import RegionSummarySubmit from './submit-forms/submit-region-summary';
 import UsersTable from './admin/users-table';
 import RegionsTable from './admin/regions-table';
 import LocationsTable from './admin/locations-table';
+import DecodeEnemyMessageForm from './admin/decode-enemy-message';
 import TodaysCodePage from './todays-code-page';
 import LocationForm from './admin/location-form';
 import RegionForm from './admin/region-form';
@@ -42,6 +43,7 @@ export default class App extends React.Component {
                         <Route path='/admin/locations' exact render={() => <Page><LocationsTable/></Page>} />
                         <Route path='/admin/regions' exact render={() => <Page><RegionsTable/></Page>} />
                         <Route path='/admin/users' exact render={() => <Page><UsersTable/></Page>} />
+                        <Route path='/admin/decode' exact render={() => <Page><DecodeEnemyMessageForm/></Page>} />
 
                         <Route path='/admin/locations/add' render={() => <Page><LocationForm/></Page>} />
                         <Route path='/admin/regions/add' render={() => <Page><RegionForm/></Page>} />

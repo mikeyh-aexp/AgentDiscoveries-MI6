@@ -8,7 +8,6 @@ $main-color: #009fff;
 $text-color: #fff;
 
 body {
-  background-color: #000;
   background: url($background-gif) no-repeat center center fixed;
   background-size: cover;
   font-family: $font;
@@ -25,6 +24,7 @@ body {
     border: 1px solid #fff;
     border-left: none;
     border-right: none;
+    z-index: 2;
     .navbar-brand {
         color: $main-color;
     }
@@ -73,6 +73,26 @@ body {
   margin-bottom: 0.75rem;
 }
 
+.opening-top {
+    background-color: #000;
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 50%;
+    width: 100%;
+    z-index: 1;
+}
+
+.opening-bottom {
+    background-color: #000;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 50%;
+    width: 100%;
+    z-index: 1;
+}
+
 .login-wrapper {
     padding-top: 15vh;
 }
@@ -93,8 +113,43 @@ body {
 }
 
 .encode-form {
-    margin: 12vh 0 0 0;
+    height: 0;
+    overflow: auto;
+    margin: 8vh 0 0 0;
     transition: all .5s ease-in-out;
+    h3 {
+        margin: 10px auto;
+    }
+}
+
+#code-result {
+    text-align: left;
+    h3 {
+        margin: 0;
+        color: $main-color;
+    }
+}
+
+.typing-animation {
+    overflow: hidden; /* Ensures the content is not revealed until the animation */
+    border-right: .11em solid $main-color; /* The typwriter cursor */
+    white-space: nowrap; /* Keeps the content on a single line */
+    margin: 10px auto; /* Gives that scrolling effect as the typing happens */
+    animation:
+        typing 3.5s steps(40, end),
+        blink-caret .75s step-end infinite;
+}
+
+/* The typing effect */
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: $main-color; }
 }
 
 #code-result {

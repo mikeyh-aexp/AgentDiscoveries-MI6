@@ -2,6 +2,7 @@ import * as React from 'react';
 import {Button, Form, FormControl, FormGroup} from 'react-bootstrap';
 import Message from '../message';
 import * as UserHelper from '../utilities/user-helper';
+import $ from 'jquery';
 
 export default class Login extends React.Component {
     constructor(props) {
@@ -44,6 +45,7 @@ export default class Login extends React.Component {
         if (UserHelper.isLoggedIn()) {
             window.location.hash = '#/message';
         }
+        $('#react-root').css('background-color', '#000');
     }
 
     onUsernameChange(event) {
