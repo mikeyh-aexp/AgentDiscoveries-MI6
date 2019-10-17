@@ -33,8 +33,7 @@ export default class NavigationBar extends React.Component {
     }
 
     componentWillMount() {
-        this.getProfilePicture();
-        this.getUser();
+        this.refreshUser();
     }
 
     componentWillUnmount() {
@@ -49,13 +48,9 @@ export default class NavigationBar extends React.Component {
             isAgent: isAgent()
         });
         if( isLoggedIn() ) {
-            this.getProfilePicture();
-            this.getUser();
+            this.refreshUser();
         } else {
-            this.setState({
-                imgSrc: '',
-                user: {}
-            })
+            this.clearUser();
         }
     }
 
@@ -83,6 +78,18 @@ export default class NavigationBar extends React.Component {
                 this.setState({ user: user });
             })
             .catch(errorLogAndRedirect);
+    }
+
+    refreshUser() {
+        this.getProfilePicture();
+        this.getUser();
+    }
+
+    clearUser() {
+        this.setState({
+            imgSrc: '',
+            user: {}
+        })
     }
 
     render() {
