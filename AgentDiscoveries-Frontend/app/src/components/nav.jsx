@@ -117,13 +117,15 @@ export default class NavigationBar extends React.Component {
                     </NavItem>
                 </Nav>
                 <Nav pullRight>
-                    <NavItem componentClass={Link} href='/profile' to='/profile' eventKey={6}>
-                        <img className="nav-avatar" src={this.state.imgSrc} />
-                        <span>{this.state.user.username}</span>
-                    </NavItem>
-                    <NavItem id="logout-link" onClick={this.handleLogOut} href='/login' to='/login' eventKey={1}>
-                        Log Out
-                    </NavItem>
+                    <img className="nav-avatar" src={this.state.imgSrc} />
+                    <NavDropdown eventKey={2} title={this.state.user.username} id="basic-nav-dropdown">
+                        <MenuItem componentClass={Link} href="/profile" to="/profile" eventKey={6}>
+                            Edit Profile
+                        </MenuItem>
+                        <NavItem id="logout-link" onClick={this.handleLogOut} href='/login' to='/login' eventKey={1}>
+                            Log Out
+                        </NavItem>
+                    </NavDropdown>
                 </Nav>
             </Navbar.Collapse>
         );
